@@ -1,5 +1,12 @@
 # binary search tree with node
 
+import sys
+sys.path.append('../queue')
+from queue import Queue
+
+sys.path.append('../stack')
+from stack import Stack
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -73,17 +80,34 @@ class BSTNode:
 
             (current.value)
         
-        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        bft_queue = Queue()
+        bft_queue.enqueue(node)
+
+        while bft_queue.__len__() != 0:
+            current_node = bft_queue.dequeue()
+            if current_node.left is not None:
+                bft_queue.enqueue(current_node.left)
+            if current_node.right is not None:
+                bft_queue.enqueue(current_node.right)
+            print(current_node.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        dft_stack = Stack()
+        dft_stack.push(node)
+
+        while dft_stack.__len__() != 0:
+            current_node = dft_stack.pop()
+            if current_node.left is not None:
+                dft_stack.push(current_node.left)
+            if current_node.right is not None:
+                dft_stack.push(current_node.right)
+            print(current_node.value)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
